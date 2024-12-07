@@ -278,9 +278,9 @@ class PIT_SDRi:
         targets = torch.stack(targets, dim=0).squeeze(1)
         input = torch.cat([kwargs['mixture'], kwargs['mixture']], dim=0)
         
-        targets = targets.cpu().data.numpy()
-        estims = estims.cpu().data.numpy()
-        input = input.cpu().data.numpy()
+        targets = targets.cpu().detach().numpy()
+        estims = estims.cpu().detach().numpy()
+        input = input.cpu().detach().numpy()
 
         min_perutt_out, _, _, _ = bss_eval_sources(targets, estims)
         min_perutt_in, _, _, _ = bss_eval_sources(targets, input)
